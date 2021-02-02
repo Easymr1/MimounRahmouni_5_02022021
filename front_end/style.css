@@ -1,0 +1,16 @@
+#parent {
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around;
+}
+
+.produit {
+    border: solid 2px;
+    height: 400px;
+    width: 400px;
+    margin: 20px;
+}
+
+.img_product {
+    height: 150px;
+}
