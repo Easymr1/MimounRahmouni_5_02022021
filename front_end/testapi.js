@@ -1,8 +1,13 @@
-let xhr = new XMLHttpRequest();
+const requet = fetch("http://localhost:3000/api/furniture");
+
+requet
+    .then(response => JSON.parse(this.responseText))
+    .then(console.log(requet))
 
 xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         let response = JSON.parse(this.responseText);
+
         console.log(response);
         for (let i = 0; i < response.length; i++)  {
             console.log(response[i].name)
@@ -21,13 +26,21 @@ xhr.onreadystatechange = function() {
             </select>
             <button id = "addToCart" onclick = "onClick()">Buy</button>
             </article>`
+
+
         }
 
+
+        return response;
     }
+
 }
 xhr.open("GET", "http://localhost:3000/api/furniture", true);
 xhr.send()
 
 function onClick() {
-    document.getElementById("cart").innerHTML = "Merci";
+    let sum = [];
+    sum.push(response[i].price / 100)
+    document.getElementById("cart").innerHTML = sum;
+    console.log(sum)
 }
