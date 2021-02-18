@@ -4,9 +4,8 @@ async function main() {
     const articles = await getElement();
     const oneArticle = createArticle(articles, id);
     creatArticle(oneArticle);
-    creatVarnish(oneArticle.varnish);
-    getPrice(oneArticle.price / 100);
-
+    const varnish = creatVarnish(oneArticle.varnish);
+    cartNumbers(oneArticle, varnish);
 }
 
 
@@ -43,35 +42,37 @@ const creatVarnish = varnish => {
         option.textContent = itchVarnish;
         select.appendChild(option);
     })
-    select.addEventListener("change", (chose) => {
+    return select.addEventListener("change", (chose) => {
         let choseVarnish = chose.target.value;
-        console.log(choseVarnish);
-    })
-
-}
-
-const getPrice = (price) => {
-    let totals = [];
-    let numberOfArticle = document.querySelector(".cart");
-    const btn = document.querySelector(".button");
-    btn.addEventListener('click', () => {
-        totals.push(price);
-        numberOfArticle.textContent += 1;
-        return calcule(totals);
-
-    })
-
-}
-
-const calcule = data => {
-
-    let sum = 0;
-    data.map(total => {
-        sum += total;
+        return choseVarnish;
     });
 
-    localStorage.setItem("total", sum)
 }
 
+const cartNumbers = (data, varnish) => {
+    let btn = document.querySelector('.button');
+
+    btn.addEventListener('click', () => {
+        let articleNumbers = localStorage.getItem('cartNumbers');
+        articleNumbers = parseInt(articleNumbers);
+
+        if (articleNumbers) {
+            localStorage.setItem('cartNumbers', articleNumbers + 1);
+            document.querySelector(".cart").textContent = articleNumbers + 1;
+        } else {
+            localStorage.setItem('cartNumbers', 1);
+            document.querySelector(".cart").textContent = 1;
+        }
+    });
+    let articleNumbers = localStorage.getItem('cartNumbers');
+    document.querySelector(".cart").textContent = articleNumbers;
+
+
+    setItems(data);
+}
+
+const setItems = data => {
+    console.log("My product is : ", data)
+}
 
 main()

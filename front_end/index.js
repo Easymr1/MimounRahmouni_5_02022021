@@ -2,6 +2,7 @@
 async function main() {
     const articles = await getElement();
     articles.map(article => displayArticle(article));
+    articlesNumbers();
 }
 
 
@@ -17,6 +18,11 @@ const displayArticle = (article) => {
 
 
     document.querySelector(".parent").appendChild(clone);
+}
+
+const articlesNumbers = () => {
+    const articleNumbers = localStorage.getItem('cartNumbers');
+    document.querySelector(".cart").textContent = articleNumbers;
 }
 
 main()
