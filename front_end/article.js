@@ -42,19 +42,21 @@ const creatVarnish = varnish => {
         option.textContent = itchVarnish;
         select.appendChild(option);
     })
-    return select.addEventListener("change", (chose) => {
+    select.addEventListener("change", (chose) => {
         let choseVarnish = chose.target.value;
-        return choseVarnish;
+        choseVarnish;
     });
 
 }
 
 const cartNumbers = (data, varnish) => {
     let btn = document.querySelector('.button');
-
+    console.log(varnish);
     btn.addEventListener('click', () => {
         let articleNumbers = localStorage.getItem('cartNumbers');
         articleNumbers = parseInt(articleNumbers);
+        setItems(data);
+
 
         if (articleNumbers) {
             localStorage.setItem('cartNumbers', articleNumbers + 1);
@@ -68,11 +70,50 @@ const cartNumbers = (data, varnish) => {
     document.querySelector(".cart").textContent = articleNumbers;
 
 
-    setItems(data);
+
 }
 
 const setItems = data => {
-    console.log("My product is : ", data)
+    let product = localStorage.getItem(`producte ${data._id}`);
+    product = JSON.parse(product);
+
+
+
+    if (product != null) {
+
+        product.inCart += 1
+
+    } else {
+        product = {
+            name: data.name,
+            price: data.price / 100,
+            image: data.imageUrl,
+            id: data._id,
+            inCart: 1,
+        }
+    }
+    console.log(product);
+
+
+    localStorage.setItem(`producte ${data._id}`, JSON.stringify(product));
+
+    //Récuperation du prix
+    totalCost(product.price);
+
+}
+
+//Obtenir le prix total du panier 
+const totalCost = product => {
+    let cartCost = localStorage.getItem('Total');
+
+
+    if (cartCost != null) {
+        cartCost = parseInt(cartCost);
+        localStorage.setItem('Total', cartCost + product);
+    } else {
+        localStorage.setItem('Total', product);
+    }
+
 }
 
 main()
