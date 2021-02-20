@@ -43,19 +43,33 @@ const creatVarnish = varnish => {
         select.appendChild(option);
     })
     select.addEventListener("change", (chose) => {
-        let choseVarnish = chose.target.value;
-        choseVarnish;
+        choseVarnish = chose.target.value;
+
+        cartNumbers(data, choseVarnish);
     });
 
 }
 
-const cartNumbers = (data, varnish) => {
+const cartNumbers = (data) => {
     let btn = document.querySelector('.button');
-    console.log(varnish);
+    const addVarnish = varnish => {
+        console.log(varnish);
+    }
+
+    const product = {
+        name: data.name,
+        price: data.price / 100,
+        image: data.imageUrl,
+        id: data._id,
+        inCart: 1,
+    }
+    console.log(product)
+
+
     btn.addEventListener('click', () => {
         let articleNumbers = localStorage.getItem('cartNumbers');
         articleNumbers = parseInt(articleNumbers);
-        setItems(data);
+        setItems(product);
 
 
         if (articleNumbers) {
@@ -73,32 +87,25 @@ const cartNumbers = (data, varnish) => {
 
 }
 
-const setItems = data => {
-    let product = localStorage.getItem(`producte ${data._id}`);
-    product = JSON.parse(product);
+const setItems = product => {
+    let articleCart = localStorage.getItem(`producte`);
+    articleCart = JSON.parse(articleCart);
 
-
-
-    if (product != null) {
-
-        product.inCart += 1
-
-    } else {
-        product = {
-            name: data.name,
-            price: data.price / 100,
-            image: data.imageUrl,
-            id: data._id,
-            inCart: 1,
-        }
+    if (articleCart === null) {
+        articleCart = {};
     }
-    console.log(product);
+    if (articleCart[product.id] !== undefined) {
+        articleCart[product.id].inCart += 1;
+    } else {
+        articleCart[product.id] = product;
+    }
 
 
-    localStorage.setItem(`producte ${data._id}`, JSON.stringify(product));
+
+    localStorage.setItem(`producte`, JSON.stringify(articleCart));
 
     //Récuperation du prix
-    totalCost(product.price);
+    totalCost(product.price)
 
 }
 
