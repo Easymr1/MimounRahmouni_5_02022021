@@ -17,3 +17,23 @@ header {
     justify-content: space-between;
     margin: 50px 100px 20px 50px;
 }
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 100px 20px 50px;
+}
+
+.img__title {
+    display: flex;
+}
+
+.img__produit {
+    height: 80px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 100px 20px 50px;
+}
