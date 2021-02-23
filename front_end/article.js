@@ -44,17 +44,13 @@ const creatVarnish = varnish => {
     })
     select.addEventListener("change", (chose) => {
         choseVarnish = chose.target.value;
-
-        cartNumbers(data, choseVarnish);
     });
 
 }
 
 const cartNumbers = (data) => {
     let btn = document.querySelector('.button');
-    const addVarnish = varnish => {
-        console.log(varnish);
-    }
+
 
     const product = {
         name: data.name,
