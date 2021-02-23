@@ -15,13 +15,16 @@ header {
 .title__panier {
     display: flex;
     justify-content: space-between;
-    margin: 50px 100px 20px 50px;
+    margin: 50px 10% 20px 10%;
 }
 
 .item {
     display: flex;
     justify-content: space-between;
-    margin: 0 100px 20px 50px;
+    margin: 0 10% 20px 10%;
+    padding-bottom: 10px;
+    border-bottom: solid 1px black;
+    align-items: flex-end;
 }
 
 .img__title {
@@ -29,11 +32,12 @@ header {
 }
 
 .img__produit {
-    height: 80px;
+    height: 100px;
+    margin-right: 10px;
 }
 
 .total {
     display: flex;
     justify-content: space-between;
-    margin: 20px 100px 20px 50px;
+    margin: 20px 10% 20px 10%;
 }
