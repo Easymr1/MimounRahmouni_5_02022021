@@ -2,51 +2,24 @@ let product = localStorage.getItem(`producte`);
 let total = localStorage.getItem(`Total`);
 let cartNumbers = localStorage.getItem(`cartNumbers`);
 document.querySelector(".cart").textContent = cartNumbers;
-document.querySelector('.prixTotal').textContent = total;
-
+document.querySelector('.prixTotal').textContent = total + ' €';
 
 const cartInformation = {
     contact: {},
-    produits: [],
+    products: [],
 };
 
 
-async function main() {
-    creationProduit(product);
-    productId(JSON.parse(product))
-}
 
 
-
-function test() {
-    console.log("Hello");
-}
-
-
-
-
-function productId(data) {
-    let allId = [];
-    let id = Object.values(data).map(item => {
-        return item.id;
-    });
-
-    for (let i = 0; i < id.length; i++) {
-        const element = id[i];
-        console.log(id);
-    }
-
-}
-
-console.log(cartInformation.produits);
-
-//Création des produits sur la page pannier
-const creationProduit = product => {
+//Création produit du panier
+const creationProduit = () => {
     product = JSON.parse(product);
 
-    Object.values(product).map(item => {
+    if (product !== null) {
+        Object.values(product).map(item => {
 
-        document.querySelector('.produit').innerHTML += `
+            document.querySelector('.produit').innerHTML += `
     <div class = 'item'>
         <div class='img__title'>
             <img class='img__produit' src =${item.image}>
@@ -58,35 +31,58 @@ const creationProduit = product => {
         <p class ='price'>${item.price}</p>
     </div>
     `;
-    })
+            cartInformation.products.push(item.id); // Envoie id pour la requet push
+        })
+    } else {
+        document.querySelector('.produit').innerHTML += `
+        <div class = 'panierVide'>
+        <h2>Votre panier et vide</h2>
+        </div>
+        `;
+        let formulaire = document.querySelector('.formulaire');
+        formulaire.style.display = "none";
+    }
 }
+creationProduit();
 
-let firstName = document.querySelector('#prenom').value;
-
-console.log(firstName);
 
 //Tester le formulaire 
 
-document.querySelector('#commande').addEventListener('submit', function(e) {
-    e.preventDefault(); //Annuler le comportement par defaut du formulaire
+const dataRetouner = () => {
 
-    let lastName = document.querySelector('#nom').value;
-    let address = document.querySelector('#adresse').value;
-    let city = document.querySelector('#ville').value;
-    let email = document.querySelector('#email').value;
+    document.querySelector('#commande').addEventListener('submit', function(e) {
+        e.preventDefault(); //Annuler le comportement par defaut du formulaire
+        let firstName = document.querySelector('#prenom').value;
+        let lastName = document.querySelector('#nom').value;
+        let address = document.querySelector('#adresse').value;
+        let city = document.querySelector('#ville').value;
+        let email = document.querySelector('#email').value;
+        alert('formulaire envoyé !')
 
-    const cartInformation = {
-        contact: {
+        cartInformation.contact = {
             firstName: firstName,
             lastName: lastName,
             address: address,
             city: city,
-            email: email
-        },
-        produits: [],
-    };
+            email: email,
+        }
+        console.log(cartInformation);
 
-    alert('formulaire envoyé !')
-})
+        fetch("http://localhost:3000/api/furniture/order", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cartInformation)
+        }).then(function(response) {
+            return response.json();
+        }).then(data => console.log(data))
 
-main();
+
+    })
+
+
+};
+
+
+dataRetouner();
