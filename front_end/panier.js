@@ -2,8 +2,9 @@ let product = localStorage.getItem(`producte`);
 let total = localStorage.getItem(`Total`);
 let cartNumbers = localStorage.getItem(`cartNumbers`);
 document.querySelector(".cart").textContent = cartNumbers;
-document.querySelector('.prixTotal').textContent = total + ' €';
 
+
+console.log(product)
 const cartInformation = {
     contact: {},
     products: [],
@@ -31,6 +32,7 @@ const creationProduit = () => {
         <p class ='price'>${item.price}</p>
     </div>
     `;
+            document.querySelector('.prixTotal').textContent = total + ' €';
             cartInformation.products.push(item.id); // Envoie id pour la requet push
         })
     } else {
@@ -41,14 +43,16 @@ const creationProduit = () => {
         `;
         let formulaire = document.querySelector('.formulaire');
         formulaire.style.display = "none";
+        document.querySelector('.prixTotal').textContent = 0 + ' €';
     }
 }
-creationProduit();
+
 
 
 //Tester le formulaire 
 
 const dataRetouner = () => {
+
 
     document.querySelector('#commande').addEventListener('submit', function(e) {
         e.preventDefault(); //Annuler le comportement par defaut du formulaire
@@ -68,6 +72,7 @@ const dataRetouner = () => {
         }
         console.log(cartInformation);
 
+
         fetch("http://localhost:3000/api/furniture/order", {
             method: 'POST',
             headers: {
@@ -76,13 +81,20 @@ const dataRetouner = () => {
             body: JSON.stringify(cartInformation)
         }).then(function(response) {
             return response.json();
-        }).then(data => console.log(data))
-
+        }).then(data => {
+            window.location = `confirmation.html?id=${data.orderId}`;
+            sessionStorage.setItem('orderId', data.orderId);
+            sessionStorage.setItem('producte', product);
+            sessionStorage.setItem('Total', total);
+            localStorage.removeItem("producte");
+            localStorage.removeItem("cartNumbers");
+            localStorage.removeItem("Total");
+        });
 
     })
 
 
 };
 
-
+creationProduit();
 dataRetouner();
