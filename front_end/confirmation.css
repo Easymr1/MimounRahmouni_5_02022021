@@ -43,22 +43,11 @@ header {
     margin: 20px 10% 20px 10%;
 }
 
-.formulaire {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
-}
-
-.panierVide h2 {
-    text-align: center;
-}
-
 footer {
     background: linear-gradient(200deg, #f368e0, #5f27cd);
     color: #f5f6fa;
+    position: absolute;
+    bottom: 0px;
     width: 100%;
     box-shadow: 0 -1rem 1rem #dcdde1;
-    height: 100px;
 }

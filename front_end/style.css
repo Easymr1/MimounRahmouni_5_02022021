@@ -8,13 +8,15 @@ a {
 }
 
 header {
-    background-color: #c0392b;
-    color: #2c3e50;
+    background: linear-gradient(200deg, #f368e0, #5f27cd);
+    color: #f5f6fa;
     height: 120px;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 0 1rem 1rem #dcdde1;
+    margin-bottom: 20px;
 }
 
 .parent {
@@ -28,7 +30,7 @@ header {
     justify-content: space-around;
     padding: 10px;
     flex-direction: column;
-    border: solid 2px;
+    box-shadow: 0 0rem 2rem #dcdde1;
     height: 400px;
     width: 400px;
     margin: 20px;
@@ -37,7 +39,7 @@ header {
 }
 
 .produit:hover {
-    scale: 1.1;
+    opacity: 0.5;
 }
 
 .img_product {
@@ -49,6 +51,9 @@ header {
 }
 
 footer {
-    color: #2c3e50;
-    background-color: #c0392b;
+    background: linear-gradient(200deg, #f368e0, #5f27cd);
+    color: #f5f6fa;
+    width: 100%;
+    box-shadow: 0 -1rem 1rem #dcdde1;
+    height: 100px;
 }

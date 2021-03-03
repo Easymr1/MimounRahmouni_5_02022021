@@ -4,7 +4,6 @@ let cartNumbers = localStorage.getItem(`cartNumbers`);
 document.querySelector(".cart").textContent = cartNumbers;
 
 
-console.log(product)
 const cartInformation = {
     contact: {},
     products: [],
@@ -12,9 +11,10 @@ const cartInformation = {
 
 
 
-
 //Création produit du panier
-const creationProduit = () => {
+const creationProduit = () => {;
+
+
     product = JSON.parse(product);
 
     if (product !== null) {
@@ -48,11 +48,11 @@ const creationProduit = () => {
 }
 
 
+console.log(product);
 
 //Tester le formulaire 
 
 const dataRetouner = () => {
-
 
     document.querySelector('#commande').addEventListener('submit', function(e) {
         e.preventDefault(); //Annuler le comportement par defaut du formulaire
@@ -70,31 +70,34 @@ const dataRetouner = () => {
             city: city,
             email: email,
         }
-        console.log(cartInformation);
 
+        post();
 
-        fetch("http://localhost:3000/api/furniture/order", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(cartInformation)
-        }).then(function(response) {
-            return response.json();
-        }).then(data => {
-            window.location = `confirmation.html?id=${data.orderId}`;
-            sessionStorage.setItem('orderId', data.orderId);
-            sessionStorage.setItem('producte', product);
-            sessionStorage.setItem('Total', total);
-            localStorage.removeItem("producte");
-            localStorage.removeItem("cartNumbers");
-            localStorage.removeItem("Total");
-        });
 
     })
 
 
 };
+
+
+async function post() {
+
+    await fetch("http://localhost:3000/api/furniture/order", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(cartInformation)
+    }).then(function(response) {
+        return response.json();
+    }).then(data => {
+        sessionStorage.setItem('orderId', data.orderId);
+        sessionStorage.setItem('products', JSON.stringify(product));
+        sessionStorage.setItem('Total', total);
+        localStorage.clear();
+        window.location = `confirmation.html?id=${data.orderId}`;
+    });
+}
 
 creationProduit();
 dataRetouner();

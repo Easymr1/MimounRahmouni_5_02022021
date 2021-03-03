@@ -3,13 +3,15 @@ body {
 }
 
 header {
-    background-color: #c0392b;
-    color: #2c3e50;
+    background: linear-gradient(200deg, #f368e0, #5f27cd);
+    color: #f5f6fa;
     height: 120px;
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    box-shadow: 0 1rem 1rem #dcdde1;
+    margin-bottom: 50px;
 }
 
 .carte {
@@ -39,4 +41,13 @@ header {
 .button {
     margin-top: 30px;
     width: 100px;
+}
+
+footer {
+    background: linear-gradient(200deg, #f368e0, #5f27cd);
+    color: #f5f6fa;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    box-shadow: 0 -1rem 1rem #dcdde1;
 }
