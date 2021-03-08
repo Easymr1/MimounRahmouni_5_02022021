@@ -48,8 +48,6 @@ const creationProduit = () => {;
 }
 
 
-console.log(product);
-
 //Tester le formulaire 
 
 const dataRetouner = () => {
@@ -61,15 +59,26 @@ const dataRetouner = () => {
         let address = document.querySelector('#adresse').value;
         let city = document.querySelector('#ville').value;
         let email = document.querySelector('#email').value;
-        alert('formulaire envoyé !')
 
         cartInformation.contact = {
             firstName: firstName,
             lastName: lastName,
             address: address,
             city: city,
-            email: email,
+            email: "",
         }
+
+
+        if (email.match(/\S+@\S+\.\S+/)) {
+            cartInformation.contact.email = email;
+        } else {
+            console.log('Bad very bad');
+        }
+
+
+
+
+
 
         post();
 
@@ -78,6 +87,9 @@ const dataRetouner = () => {
 
 
 };
+
+
+
 
 
 async function post() {
@@ -91,11 +103,17 @@ async function post() {
     }).then(function(response) {
         return response.json();
     }).then(data => {
-        sessionStorage.setItem('orderId', data.orderId);
-        sessionStorage.setItem('products', JSON.stringify(product));
-        sessionStorage.setItem('Total', total);
-        localStorage.clear();
-        window.location = `confirmation.html?id=${data.orderId}`;
+
+        if (data.orderId !== undefined) {
+            alert('formulaire envoyé !');
+            sessionStorage.setItem('orderId', data.orderId);
+            sessionStorage.setItem('products', JSON.stringify(product));
+            sessionStorage.setItem('Total', total);
+            localStorage.clear();
+            window.location = `confirmation.html?id=${data.orderId}`;
+        } else {
+            alert('Error')
+        };
     });
 }
 
