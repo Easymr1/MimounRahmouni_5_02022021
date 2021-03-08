@@ -62,3 +62,7 @@ footer {
     box-shadow: 0 -1rem 1rem #dcdde1;
     height: 100px;
 }
+
+.email {
+    color: red;
+}

@@ -72,7 +72,7 @@ const dataRetouner = () => {
         if (email.match(/\S+@\S+\.\S+/)) {
             cartInformation.contact.email = email;
         } else {
-            console.log('Bad very bad');
+            document.querySelector('.email').textContent = 'Email incorrect';
         }
 
 
@@ -112,7 +112,7 @@ async function post() {
             localStorage.clear();
             window.location = `confirmation.html?id=${data.orderId}`;
         } else {
-            alert('Error')
+            alert('Erreur dans le formulaire')
         };
     });
 }
