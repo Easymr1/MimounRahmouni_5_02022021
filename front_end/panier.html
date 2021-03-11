@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="panier.css">
+    <link rel="stylesheet" href="font_awe/css/all.css">
     <title>Panier</title>
 </head>
 
@@ -40,25 +41,28 @@
         </h2>
 
         <form id="commande">
-            <p>
-                <label for="nom">Nom</label><br>
-                <input type="text" name="nom" id="nom" required/>
-                <br />
-                <label for="prenom">Prénom</label><br>
-                <input type="text" name="prenom" id="prenom" required/>
-                <br>
-                <p class="email"></p>
-                <label for="email">Email</label><br>
-                <input type="text" name="email" id="email" />
-                <br>
-                <label for="address">Adresse</label><br>
-                <input type="text" name="adresse" id="adresse" required/>
-                <br>
-                <label for="ville">Ville</label><br>
-                <input type="text" name="ville" id="ville" required/>
-                <br>
-                <input type="submit" value="Envoyer">
-            </p>
+            <p class="nom erreur"></p>
+            <label for="nom">Nom</label><br>
+            <input type="text" name="nom" id="nom" />
+            <br />
+            <p class="prenom erreur"></p>
+            <label for="prenom">Prénom</label><br>
+            <input type="text" name="prenom" id="prenom" />
+            <br>
+            <p class="email erreur"></p>
+            <label for="email">Email</label><br>
+            <input type="text" name="email" id="email" />
+            <br>
+            <p class="adresse erreur"></p>
+            <label for="address">Adresse</label><br>
+            <input type="text" name="adresse" id="adresse" />
+            <br>
+            <p class="ville erreur"></p>
+            <label for="ville">Ville</label><br>
+            <input type="text" name="ville" id="ville" />
+            <br>
+            <input type="submit" value="Envoyer">
+
         </form>
 
     </section>

@@ -13,20 +13,17 @@ const cartInformation = {
 
 //Création produit du panier
 const creationProduit = () => {;
-
-
     product = JSON.parse(product);
 
     if (product !== null) {
         Object.values(product).map(item => {
-
             document.querySelector('.produit').innerHTML += `
     <div class = 'item'>
         <div class='img__title'>
             <img class='img__produit' src =${item.image}>
             <div class = 'title'>
                 <h3>${item.name}</h3>
-                <p class='numberItems'>Qté : ${item.inCart}</p>
+                <p class='numberItems'>Qté : <button class='moins'><i class="fas fa-minus"></i></button> <strong>${item.inCart}</strong> <button class ='plus'><i class="fas fa-plus"></i></button> <button class ='supprimer'>Supprimer</button></p>
             </div>
         </div>
         <p class ='price'>${item.price}</p>
@@ -45,6 +42,16 @@ const creationProduit = () => {;
         formulaire.style.display = "none";
         document.querySelector('.prixTotal').textContent = 0 + ' €';
     }
+    let id = Object.keys(product);
+
+    let supprimer = document.querySelectorAll('.supprimer');
+    supprimer.forEach(item => addEventListener('click', async() => {
+        console.log()
+    }));
+
+
+
+
 }
 
 
@@ -61,26 +68,62 @@ const dataRetouner = () => {
         let email = document.querySelector('#email').value;
 
         cartInformation.contact = {
-            firstName: firstName,
-            lastName: lastName,
-            address: address,
-            city: city,
+            firstName: "",
+            lastName: "",
+            address: "",
+            city: "",
             email: "",
         }
 
 
-        if (email.match(/\S+@\S+\.\S+/)) {
+
+        if (email.match(/\S+@\S+\.\S+/) && email !== "") {
             cartInformation.contact.email = email;
+            document.querySelector('.email').textContent = ''
+
         } else {
             document.querySelector('.email').textContent = 'Email incorrect';
         }
 
+        if (lastName.match(/\b[^\d\W]+\b/) && lastName !== "") {
+            cartInformation.contact.lastName = lastName;
+            document.querySelector('.nom').textContent = ''
+
+        } else {
+            document.querySelector('.nom').textContent = 'Nom incorrect'
+        }
+
+        if (firstName.match(/\b[^\d\W]+\b/) && firstName !== "") {
+            cartInformation.contact.firstName = firstName;
+            document.querySelector('.prenom').textContent = ''
+
+        } else {
+            document.querySelector('.prenom').textContent = 'Prénom incorrect'
+        }
+
+        if (city.match(/\b[^\d\W]+\b/) && city !== "") {
+            cartInformation.contact.city = city;
+            document.querySelector('.ville').textContent = ''
+
+        } else {
+            document.querySelector('.ville').textContent = 'Ville incorrect'
+        }
+
+        if (address !== "") {
+            cartInformation.contact.address = address;
+            document.querySelector('.adresse').textContent = ''
+
+        } else {
+            document.querySelector('.adresse').textContent = 'Address incorrect'
+
+        }
 
 
+        if (email.match(/\S+@\S+\.\S+/) && email !== "" && lastName.match(/\b[^\d\W]+\b/) && lastName !== "" && firstName.match(/\b[^\d\W]+\b/) && firstName !== "" && city.match(/\b[^\d\W]+\b/) && city !== "" && address !== "") {
+            post();
+        }
 
 
-
-        post();
 
 
     })
