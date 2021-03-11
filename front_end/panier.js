@@ -33,6 +33,7 @@ const creationProduit = () => {;
             cartInformation.products.push(item.id); // Envoie id pour la requet push
         })
     } else {
+        //Si le panier et vide le formulaire ne s'affiche pas//
         document.querySelector('.produit').innerHTML += `
         <div class = 'panierVide'>
         <h2>Votre panier et vide</h2>
@@ -55,8 +56,7 @@ const creationProduit = () => {;
 }
 
 
-//Tester le formulaire 
-
+//Interactcion avec le forumulaire//
 const dataRetouner = () => {
 
     document.querySelector('#commande').addEventListener('submit', function(e) {
@@ -118,7 +118,7 @@ const dataRetouner = () => {
 
         }
 
-
+        //Vérification de tout les condition avant Envoie des donner à l'API//
         if (email.match(/\S+@\S+\.\S+/) && email !== "" && lastName.match(/\b[^\d\W]+\b/) && lastName !== "" && firstName.match(/\b[^\d\W]+\b/) && firstName !== "" && city.match(/\b[^\d\W]+\b/) && city !== "" && address !== "") {
             post();
         }
