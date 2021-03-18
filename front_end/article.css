@@ -2,6 +2,10 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 header {
     background: linear-gradient(200deg, #f368e0, #5f27cd);
     color: #f5f6fa;
@@ -21,8 +25,20 @@ header {
     justify-content: space-around;
 }
 
+.panier {
+    color: #f5f6fa;
+    display: flex;
+    align-items: center;
+}
+
+.cart {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-left: 10px;
+}
+
 .img_choix {
-    width: 30%;
+    width: 50%;
     border-radius: 20px;
 }
 

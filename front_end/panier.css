@@ -1,5 +1,8 @@
 body {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 header {
@@ -17,6 +20,23 @@ header {
     display: flex;
     justify-content: space-between;
     margin: 50px 10% 20px 10%;
+}
+
+a {
+    text-decoration: none;
+    color: #2c3e50;
+}
+
+.panier {
+    color: #f5f6fa;
+    display: flex;
+    align-items: center;
+}
+
+.cart {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-left: 10px;
 }
 
 .item {
@@ -49,6 +69,7 @@ header {
     flex-direction: column;
     align-items: center;
     font-size: 1.5rem;
+    margin-bottom: 50px;
 }
 
 .panierVide h2 {

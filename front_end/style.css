@@ -19,6 +19,18 @@ header {
     margin-bottom: 20px;
 }
 
+.panier {
+    color: #f5f6fa;
+    display: flex;
+    align-items: center;
+}
+
+.cart {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-left: 10px;
+}
+
 .parent {
     display: flex;
     flex-flow: wrap row;
@@ -39,7 +51,7 @@ header {
 }
 
 .produit:hover {
-    opacity: 0.5;
+    filter: webkit-brightness(0.8);
 }
 
 .img_product {

@@ -22,7 +22,13 @@ const displayArticle = (article) => {
 
 const articlesNumbers = () => {
     const articleNumbers = localStorage.getItem('cartNumbers');
-    document.querySelector(".cart").textContent = articleNumbers;
+    const nombreArticlePanier = document.querySelector(".cart");
+
+    if (articleNumbers === null) {
+        nombreArticlePanier.textContent = 0;
+    } else {
+        nombreArticlePanier.textContent = articleNumbers;
+    }
 }
 
 main()

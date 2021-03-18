@@ -59,7 +59,6 @@ const cartNumbers = (data) => {
         id: data._id,
         inCart: 1,
     }
-    console.log(product)
 
 
     btn.addEventListener('click', () => {
@@ -76,9 +75,15 @@ const cartNumbers = (data) => {
             document.querySelector(".cart").textContent = 1;
         }
     });
-    let articleNumbers = localStorage.getItem('cartNumbers');
-    document.querySelector(".cart").textContent = articleNumbers;
 
+    const articleNumbers = localStorage.getItem('cartNumbers');
+    const nombreArticlePanier = document.querySelector(".cart");
+
+    if (articleNumbers === null) {
+        nombreArticlePanier.textContent = 0;
+    } else {
+        nombreArticlePanier.textContent = articleNumbers;
+    }
 
 
 }

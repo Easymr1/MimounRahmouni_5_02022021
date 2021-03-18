@@ -1,7 +1,6 @@
 let product = localStorage.getItem(`producte`);
 let total = localStorage.getItem(`Total`);
 let cartNumbers = localStorage.getItem(`cartNumbers`);
-document.querySelector(".cart").textContent = cartNumbers;
 
 
 const cartInformation = {
@@ -15,12 +14,16 @@ const cartInformation = {
 const creationProduit = () => {;
     product = JSON.parse(product);
     const caseProduit = document.querySelector('.produit');
-    let arrayProduit = [];
+    const arrayProduit = [];
+    const nombreArticlePanier = document.querySelector(".cart");
+    const prixTotalDuPanier = document.querySelector('.prixTotal');
+    const formulaire = document.querySelector('.formulaire');
+
     if (product !== null) {
         Object.values(product).map(item => {
             arrayProduit.push(item);
         })
-        newProduit(arrayProduit, caseProduit);
+        newProduit(arrayProduit, caseProduit, nombreArticlePanier, prixTotalDuPanier);
     } else {
         //Si le panier et vide le formulaire ne s'affiche pas//
         caseProduit.innerHTML += `
@@ -28,9 +31,10 @@ const creationProduit = () => {;
         <h2>Votre panier et vide</h2>
         </div>
         `;
-        let formulaire = document.querySelector('.formulaire');
+
         formulaire.style.display = "none";
-        document.querySelector('.prixTotal').textContent = 0 + ' €';
+        prixTotalDuPanier.textContent = 0 + ' €';
+        nombreArticlePanier.textContent = 0;
 
     }
 
@@ -38,7 +42,7 @@ const creationProduit = () => {;
 }
 
 
-const newProduit = (arrayProduit, caseProduit) => {
+const newProduit = (arrayProduit, caseProduit, nombreArticlePanier, prixTotalDuPanier) => {
     for (let i = 0; i < arrayProduit.length; i++) {
         caseProduit.innerHTML += `
     <div class = 'item'>
@@ -46,20 +50,19 @@ const newProduit = (arrayProduit, caseProduit) => {
             <img class='img__produit' src =${arrayProduit[i].image}>
             <div class = 'title'>
                 <h3>${arrayProduit[i].name}</h3>
-                <p class='numberItems'>Qté : <button class='moins'><i class="fas fa-minus"></i></button> <strong class='nbrProduit${i}'>${arrayProduit[i].inCart}</strong> <button class ='plus'><i class="fas fa-plus"></i></button> <button class ='supprimer' id='${arrayProduit[i].id}'>Supprimer</button></p>
+                <p class='numberItems'>Qté :<strong class='nbrProduit${i}'>${arrayProduit[i].inCart}   </strong><button class ='supprimer' id='${arrayProduit[i].id}'>Supprimer</button></p>
             </div>
         </div>
-        <p class ='price'>${arrayProduit[i].price}</p>
+        <p class ='price'>${arrayProduit[i].price} €</p>
     </div>
     `;
 
-
-
-
-        supprimerElement(arrayProduit);
-
-        document.querySelector('.prixTotal').textContent = total + ' €';
+        nombreArticlePanier.textContent = cartNumbers;
+        prixTotalDuPanier.textContent = total + ' €';
         cartInformation.products.push(arrayProduit[i].id);
+
+        //Suppresion d'un element du pannier au click 
+        supprimerElement(arrayProduit);
     }
 
 }
@@ -73,6 +76,9 @@ const supprimerElement = (product) => {
         let result = product.filter(un => un.id !== item.id);
         localStorage.removeItem('producte');
         localStorage.removeItem('Total');
+        localStorage.removeItem('cartNumbers');
+        let sum = 0;
+        let inCart = 0;
         result.forEach(item => {
 
             let articleCart = localStorage.getItem(`producte`);
@@ -87,10 +93,14 @@ const supprimerElement = (product) => {
             }
 
             let total = localStorage.getItem('Total');
-            total = total += item.price;
+            sum += item.price * item.inCart;
+            console.log(sum);
 
+            let cart = localStorage.getItem('cartNumbers');
+            inCart += item.inCart;
 
-            localStorage.setItem('Total', total);
+            localStorage.setItem('cartNumbers', inCart);
+            localStorage.setItem('Total', sum);
             localStorage.setItem(`producte`, JSON.stringify(articleCart));
 
 
@@ -130,20 +140,20 @@ const dataRetouner = () => {
         } else {
             document.querySelector('.email').textContent = 'Email incorrect';
         }
-        if (lastName.match(/\b[^\d\W]+\b/) && lastName !== "") {
+        if (lastName.match(/^([a-zA-Z ]+)$/) && lastName !== "") {
             cartInformation.contact.lastName = lastName;
             document.querySelector('.nom').textContent = ''
         } else {
             document.querySelector('.nom').textContent = 'Nom incorrect'
         }
-        if (firstName.match(/\b[^\d\W]+\b/) && firstName !== "") {
+        if (firstName.match(/^([a-zA-Z ]+)$/) && firstName !== "") {
             cartInformation.contact.firstName = firstName;
             document.querySelector('.prenom').textContent = ''
 
         } else {
             document.querySelector('.prenom').textContent = 'Prénom incorrect'
         }
-        if (city.match(/\b[^\d\W]+\b/) && city !== "") {
+        if (city.match(/^([a-zA-Z ]+)$/) && city !== "") {
             cartInformation.contact.city = city;
             document.querySelector('.ville').textContent = ''
 
@@ -159,9 +169,9 @@ const dataRetouner = () => {
 
         //Vérification de tout les condition avant Envoie des donner à l'API//
         if (email.match(/\S+@\S+\.\S+/) && email !== "" &&
-            lastName.match(/\b[^\d\W]+\b/) && lastName !== "" &&
-            firstName.match(/\b[^\d\W]+\b/) && firstName !== "" &&
-            city.match(/\b[^\d\W]+\b/) && city !== "" &&
+            lastName.match(/^([a-zA-Z ]+)$/) && lastName !== "" &&
+            firstName.match(/^([a-zA-Z ]+)$/) && firstName !== "" &&
+            city.match(/^([a-zA-Z ]+)$/) && city !== "" &&
             address !== "") {
             post();
         }
