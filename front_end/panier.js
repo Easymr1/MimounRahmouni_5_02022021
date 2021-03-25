@@ -11,7 +11,7 @@ const cartInformation = {
 
 
 //Création produit du panier
-const creationProduit = () => {;
+const miseEnPagePanierFormulaire = () => {;
     product = JSON.parse(product);
     const caseProduit = document.querySelector('.produit');
     const arrayProduit = [];
@@ -37,8 +37,6 @@ const creationProduit = () => {;
         nombreArticlePanier.textContent = 0;
 
     }
-
-
 }
 
 
@@ -102,22 +100,15 @@ const supprimerElement = (product) => {
             localStorage.setItem('cartNumbers', inCart);
             localStorage.setItem('Total', sum);
             localStorage.setItem(`producte`, JSON.stringify(articleCart));
-
-
-
         })
         location.reload();
-
     }))
-
-
 };
 
 
 
 //Interactcion avec le forumulaire//
 const dataRetouner = () => {
-
     document.querySelector('#commande').addEventListener('submit', function(e) {
         e.preventDefault(); //Annuler le comportement par defaut du formulaire
         let firstName = document.querySelector('#prenom').value;
@@ -178,5 +169,5 @@ const dataRetouner = () => {
     })
 };
 
-creationProduit();
+miseEnPagePanierFormulaire();
 dataRetouner();

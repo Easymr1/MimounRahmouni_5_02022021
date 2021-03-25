@@ -2,14 +2,14 @@ const id = new URLSearchParams(window.location.search).get("id");
 
 async function main() {
     const articles = await getElement();
-    const oneArticle = createArticle(articles, id);
+    const oneArticle = findArticleById(articles, id);
     creatArticle(oneArticle);
     const varnish = creatVarnish(oneArticle.varnish);
-    cartNumbers(oneArticle, varnish);
+    cartNumbersAndStock(oneArticle, varnish);
 }
 
 
-const createArticle = (element, id) => {
+const findArticleById = (element, id) => {
     let sameArticle = element.find(sameId => sameId._id === id);
     return sameArticle;
 }
@@ -48,9 +48,8 @@ const creatVarnish = varnish => {
 
 }
 
-const cartNumbers = (data) => {
+const cartNumbersAndStock = (data) => {
     let btn = document.querySelector('.button');
-
 
     const product = {
         name: data.name,
@@ -60,11 +59,10 @@ const cartNumbers = (data) => {
         inCart: 1,
     }
 
-
     btn.addEventListener('click', () => {
         let articleNumbers = localStorage.getItem('cartNumbers');
         articleNumbers = parseInt(articleNumbers);
-        setItems(product);
+        stockItem(product);
 
 
         if (articleNumbers) {
@@ -84,11 +82,11 @@ const cartNumbers = (data) => {
     } else {
         nombreArticlePanier.textContent = articleNumbers;
     }
-
-
 }
 
-const setItems = product => {
+
+
+const stockItem = product => {
     let articleCart = localStorage.getItem(`producte`);
     articleCart = JSON.parse(articleCart);
 
@@ -100,8 +98,6 @@ const setItems = product => {
     } else {
         articleCart[product.id] = product;
     }
-
-
 
     localStorage.setItem(`producte`, JSON.stringify(articleCart));
 

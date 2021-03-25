@@ -26,8 +26,6 @@ const infoBody = () => {
     section.appendChild(article);
 
     recapProducts(products)
-
-
 }
 
 const recapProducts = (products) => {
