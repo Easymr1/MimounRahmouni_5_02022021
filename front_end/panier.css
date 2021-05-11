@@ -1,4 +1,5 @@
 body {
+    height: 100vh;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -14,6 +15,10 @@ header {
     justify-content: space-around;
     align-items: center;
     box-shadow: 0 1rem 1rem #dcdde1;
+}
+
+section {
+    height: 100%;
 }
 
 .title__panier {
@@ -74,16 +79,6 @@ a {
 
 .panierVide h2 {
     text-align: center;
-}
-
-footer {
-    background: linear-gradient(200deg, #f368e0, #5f27cd);
-    color: #f5f6fa;
-    width: 100%;
-    box-shadow: 0 -1rem 1rem #dcdde1;
-    height: 100px;
-    position: relative;
-    bottom: 0px;
 }
 
 .erreur {

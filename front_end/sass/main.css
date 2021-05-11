@@ -1,0 +1,9 @@
+.footer {
+  background: linear-gradient(200deg, #f368e0, #5f27cd);
+  color: #f5f6fa;
+  width: 100%;
+  -webkit-box-shadow: 0 -1rem 1rem #dcdde1;
+          box-shadow: 0 -1rem 1rem #dcdde1;
+  height: 100px;
+}
+/*# sourceMappingURL=main.css.map */
