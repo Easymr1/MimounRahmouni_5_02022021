@@ -6,17 +6,6 @@ body {
     justify-content: space-between;
 }
 
-header {
-    background: linear-gradient(200deg, #f368e0, #5f27cd);
-    color: #f5f6fa;
-    height: 120px;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    box-shadow: 0 1rem 1rem #dcdde1;
-}
-
 section {
     height: 100%;
 }
@@ -30,6 +19,10 @@ section {
 a {
     text-decoration: none;
     color: #2c3e50;
+}
+
+.home {
+    color: #f5f6fa;
 }
 
 .panier {

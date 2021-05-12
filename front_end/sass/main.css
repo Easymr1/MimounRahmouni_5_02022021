@@ -5,5 +5,24 @@
   -webkit-box-shadow: 0 -1rem 1rem #dcdde1;
           box-shadow: 0 -1rem 1rem #dcdde1;
   height: 100px;
+  margin-top: 2rem;
+}
+
+.header {
+  background: linear-gradient(200deg, #f368e0, #5f27cd);
+  color: #f5f6fa;
+  height: 120px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 1rem 1rem #dcdde1;
+          box-shadow: 0 1rem 1rem #dcdde1;
+  margin-bottom: 2rem;
 }
 /*# sourceMappingURL=main.css.map */

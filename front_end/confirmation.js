@@ -42,7 +42,7 @@ const recapProducts = (products) => {
                     <p class='numberItems'>Qté : ${item.inCart}</p>
                 </div>
             </div>
-            <p class ='price'>${item.price}</p>
+            <p class ='price'>${item.price} €</p>
         </div>
         `;
 
