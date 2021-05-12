@@ -7,18 +7,18 @@ const infoBody = () => {
     body.style.textAlign = 'center';
 
     const title = document.createElement('h1');
-    title.innerHTML = 'Votre commande à était enregistrée';
+    title.innerHTML = 'Votre commande a été enregistrée';
     body.appendChild(title);
 
     const paragraphe = document.createElement('p');
-    paragraphe.innerHTML = `Votre commande n°<strong>${idCommande}</strong> d'une valeur de <strong>${total}</strong> € à bien était validée.<br>  Nous vous remercions d'avoir fais affaire avec orinoco. `
+    paragraphe.innerHTML = `Votre commande n°<strong>${idCommande}</strong> d'une valeur de <strong>${total}</strong> € a bien été validée.<br>  Nous vous remercions d'avoir fait affaire avec Orinoco. `
     body.appendChild(paragraphe);
 
     const section = document.createElement('section');
     body.appendChild(section);
 
     const titleSection = document.createElement('h2');
-    titleSection.innerHTML = 'Récapitulatife de commande';
+    titleSection.innerHTML = 'Récapitulatif de commande';
     section.appendChild(titleSection);
 
     const article = document.createElement('article');
