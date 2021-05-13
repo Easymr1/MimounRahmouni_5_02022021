@@ -28,7 +28,7 @@ const miseEnPagePanierFormulaire = () => {;
         //Si le panier et vide le formulaire ne s'affiche pas//
         caseProduit.innerHTML += `
         <div class = 'panierVide'>
-        <h2>Votre panier et vide</h2>
+        <h2>Votre panier est vide</h2>
         </div>
         `;
 

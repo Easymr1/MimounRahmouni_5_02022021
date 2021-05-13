@@ -14,7 +14,7 @@ const displayArticle = (article) => {
     clone.querySelector(".img_product").src = article.imageUrl;
     clone.querySelector(".desription_product").textContent = article.description;
     clone.querySelector(".price").textContent = article.price / 100 + ` €`;
-    clone.querySelector(".produit").href = `article.html?id=${article._id}`;
+    clone.querySelector(".produit").href = `page/article.html?id=${article._id}`;
 
 
     document.querySelector(".parent").appendChild(clone);

@@ -30,7 +30,6 @@ const infoBody = () => {
 
 const recapProducts = (products) => {
     products = JSON.parse(products);
-    console.log(products);
 
     Object.values(products).map(item => {
         document.querySelector('#produit').innerHTML += `
